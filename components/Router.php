@@ -27,7 +27,7 @@ class Router {
             
             // Сравниваем $uriPattern(данные из файла routes.php) и $uri(строка запроса пользователя)
         
-            if(preg_match("~^$uriPattern$~", $uri)){
+            if(preg_match("~$uriPattern~", $uri)){
                 
                     // Определить какой контроллер 
                     // и action обрабатывает запрос
