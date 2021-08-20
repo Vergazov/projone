@@ -31,9 +31,13 @@ class Router {
             
             if(preg_match("~$key~", $uri)){   // Проверяем, содержиться ли в шаблоне $key(взятому из routes.php) строка $uri(пользовательский ввод)          
              
-             $segments = (explode('/', $value)); 
+             $internalRoute = preg_replace("~$key~", $value , $uri);
+             
+             $segments = (explode('/', $internalRoute)); 
              $controller = ucfirst(array_shift($segments)) . 'Controller';
-             $action = 'Action' . ucfirst(array_shift($segments));           
+             $action = 'Action' . ucfirst(array_shift($segments));
+             
+             $parameters = $segments;
             
         
         // Подключить файл класса-контроллера
@@ -45,7 +49,7 @@ class Router {
         
         // Создать объект, выхвать метод(т.е action)
         $controllerObject = new $controller;
-        $result = $controllerObject->$action();
+        $result = call_user_func_array(array($controllerObject,$action), $parameters);
         if($result != null){
             die();
         }

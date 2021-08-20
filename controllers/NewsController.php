@@ -1,8 +1,16 @@
 <?php
 
 class NewsController {
+    
     public function ActionIndex() {
-        echo 'Вызван метод Класса ' . __CLASS__;
+   
+        echo 'Просмотр новостей';
+        return true;
+    }
+    
+    public function ActionView($category,$id) {
+        echo $category, '<br>';
+        echo $id;
         return true;
     }
 }
