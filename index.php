@@ -10,11 +10,7 @@ error_reporting(E_ALL);
 // 2. Подключение файлов системы
 define('ROOT', __DIR__);
 include_once 'components/Router.php';
-
-
-
-// 3. Установка соединения с БД
-
+include_once 'components/DB.php';
 
 // 4. Вызов Router
 $router = new Router;
